@@ -1,3 +1,1 @@
-module Dynaccount
-  # Your code goes here...
-end
+require_relative 'dynaccount/invoice'
