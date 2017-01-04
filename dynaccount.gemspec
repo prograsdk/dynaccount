@@ -9,10 +9,13 @@ Gem::Specification.new do |s|
   s.version     = Dynaccount::VERSION
   s.authors     = ["Frederik Spang"]
   s.email       = ["frederik@frederikspang.dk"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Dynaccount."
-  s.description = "TODO: Description of Dynaccount."
+  s.homepage    = "https://dynaccount.com"
+  s.summary     = "The dynaccount gem is an module-based integration for Dynaccount"
+  s.description = "The dynaccount gem is an module-based integration for Dynaccount, with the classic ActiveRecord structure, find, all etc."
   s.license     = "MIT"
+
+  s.add_runtime_dependency 'json', '~> 2.0'
+  s.add_runtime_dependency 'faraday', '~> 0.10'
 
   s.files = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
