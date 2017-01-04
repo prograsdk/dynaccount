@@ -66,7 +66,7 @@ require 'dynaccount/year'
 require 'dynaccount/year_period'
 
 module Dynaccount
-  attr_accessor :api_key, :api_base, :api_version
+  attr_accessor :api_key, :api_base, :api_secret, :api_id
   @base_url = "https://api.dynaccount.com"
 
   def self.configure(&block)

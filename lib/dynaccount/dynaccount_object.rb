@@ -6,7 +6,7 @@ module Dynaccount
       @values[:id] = id if id
     end
 
-    def create
+    def create(attributes = {})
     end
 
     def self.all
