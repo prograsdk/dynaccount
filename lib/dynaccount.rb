@@ -1,6 +1,7 @@
 require_relative 'dynaccount/invoice'
 
 module Dynaccount
-  def self.configure
+  def self.configure(&block)
+    yield(block)
   end
 end
