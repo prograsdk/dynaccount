@@ -1,5 +1,5 @@
 module Dynaccount
-  class DynaccountObject < ParentClass
+  class DynaccountObject
     def initialize(id)
       @original_values = {}
       @values = {}
