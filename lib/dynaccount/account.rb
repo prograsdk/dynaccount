@@ -1,5 +1,8 @@
 module Dynaccount
-  class Account
+  class Account < DynaccountObject
+
+    def self.url
+      "/v5/account"
+    end
   end
 end
-    

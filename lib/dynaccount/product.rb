@@ -1,5 +1,8 @@
 module Dynaccount
-  class Product
+  class Product < DynaccountObject
+
+    def self.url
+      "/v5/product"
+    end
   end
 end
-    
