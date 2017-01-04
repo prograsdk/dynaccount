@@ -1,5 +1,6 @@
 module Dynaccount
   class Invoice
+    include Modelable
     def self.find(id)
 
     end
