@@ -2,7 +2,13 @@
 Short description and motivation.
 
 ## Usage
-How to use my plugin.
+
+### config/initializers/dynaccount.rb
+```ruby
+  Dynaccount.api_id = "key"
+  Dynaccount.api_key = "key"
+  Dynaccount.api_secret = "key"
+```
 
 ## Installation
 Add this line to your application's Gemfile:
