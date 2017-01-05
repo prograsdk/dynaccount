@@ -14,9 +14,8 @@ Gem::Specification.new do |s|
   s.description = "The dynaccount gem is an module-based integration for Dynaccount, with the classic ActiveRecord structure, find, all etc."
   s.license     = "MIT"
 
-  s.add_runtime_dependency 'json', '~> 2.0'
+  s.add_runtime_dependency 'json', '~> 2.0', '>= 2.0.2'
   s.add_runtime_dependency 'faraday', '~> 0.10'
 
   s.files = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-
 end
