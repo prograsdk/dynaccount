@@ -1,3 +1,4 @@
+require 'JSON'
 require 'faraday'
 require 'net/http/persistent'
 require 'logger'
