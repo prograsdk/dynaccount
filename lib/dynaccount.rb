@@ -1,3 +1,7 @@
+require 'faraday'
+require 'net/http/persistent'
+require 'logger'
+
 require 'dynaccount/dynaccount_object'
 
 require 'dynaccount/account'
@@ -66,16 +70,31 @@ require 'dynaccount/year'
 require 'dynaccount/year_period'
 
 module Dynaccount
-  @base_url = "https://api.dynaccount.com"
+  @base_url = 'api.dynaccount.com'
 
   class << self
     attr_accessor :api_key, :api_base, :api_secret, :api_id
 
-    def request(method = :get, id)
+    def request(url, params = {}, method = :get)
+      conn = Faraday.new(url: "https://#{request_url(url)}") do |faraday|
+        faraday.request  :url_encoded
+        faraday.response :logger, ::Logger.new(STDOUT), bodies: true
+        faraday.adapter  :net_http_persistent
+      end
+
+      conn.post do |req|
+        req.body = { __api_hash: api_hash(request_url(url), params) }
+      end
     end
 
-    def request_url
-      @base_url + self.url
+    def request_url(url)
+      @base_url + url
+    end
+
+    def api_hash(url, params = {})
+      p "#{url}#{URI.encode_www_form(params)}#{api_secret}"
+      (Digest::SHA1.new << "#{url}#{URI.encode_www_form(params)}#{api_secret}")
+        .to_s
     end
   end
 end

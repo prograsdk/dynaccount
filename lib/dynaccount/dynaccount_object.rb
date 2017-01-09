@@ -10,16 +10,15 @@ module Dynaccount
     end
 
     def self.all
-      find(0)
+      JSON.parse(find(nil)).to_hash
     end
 
     def self.find(id)
-      request(:get, id)
-      p id, self.url
+      Dynaccount.request(url(id), {}, :post)
     end
 
-    def self.url
-      "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{self.api_path}"
+    def self.url(id)
+      "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/get/#{api_path}/json/#{"#{id}/" unless id.nil?}"
     end
   end
 end
