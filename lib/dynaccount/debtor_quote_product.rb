@@ -1,8 +1,8 @@
 module Dynaccount
   class DebtorQuoteProduct < DynaccountObject
 
-    def self.url
-      "/v5/debtor_quote_product"
+    def self.api_path
+      "debtor_quote_product"
     end
   end
 end

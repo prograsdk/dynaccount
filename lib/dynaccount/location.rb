@@ -1,8 +1,8 @@
 module Dynaccount
   class Location < DynaccountObject
 
-    def self.url
-      "/v5/location"
+    def self.api_path
+      "location"
     end
   end
 end

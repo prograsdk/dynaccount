@@ -1,8 +1,8 @@
 module Dynaccount
   class Product < DynaccountObject
 
-    def self.url
-      "/v5/product"
+    def self.api_path
+      "product"
     end
   end
 end

@@ -1,8 +1,8 @@
 module Dynaccount
   class Vatcode < DynaccountObject
 
-    def self.url
-      "/v5/vatcode"
+    def self.api_path
+      "vatcode"
     end
   end
 end

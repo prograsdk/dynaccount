@@ -1,8 +1,8 @@
 module Dynaccount
   class Year < DynaccountObject
 
-    def self.url
-      "/v5/year"
+    def self.api_path
+      "year"
     end
   end
 end

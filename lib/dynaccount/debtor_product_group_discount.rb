@@ -1,8 +1,8 @@
 module Dynaccount
   class DebtorProductGroupDiscount < DynaccountObject
 
-    def self.url
-      "/v5/debtor_product_group_discount"
+    def self.api_path
+      "debtor_product_group_discount"
     end
   end
 end

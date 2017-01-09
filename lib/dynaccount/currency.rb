@@ -1,8 +1,8 @@
 module Dynaccount
   class Currency < DynaccountObject
 
-    def self.url
-      "/v5/currency"
+    def self.api_path
+      "currency"
     end
   end
 end

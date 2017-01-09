@@ -15,6 +15,11 @@ module Dynaccount
 
     def self.find(id)
       request(:get, id)
+      p id, self.url
+    end
+
+    def self.url
+      "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{self.api_path}"
     end
   end
 end

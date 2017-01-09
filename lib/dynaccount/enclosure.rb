@@ -1,8 +1,8 @@
 module Dynaccount
   class Enclosure < DynaccountObject
 
-    def self.url
-      "/v5/enclosure"
+    def self.api_path
+      "enclosure"
     end
   end
 end

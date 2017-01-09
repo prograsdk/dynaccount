@@ -1,8 +1,8 @@
 module Dynaccount
   class StockAdjustment < DynaccountObject
 
-    def self.url
-      "/v5/stock_adjustment"
+    def self.api_path
+      "stock_adjustment"
     end
   end
 end

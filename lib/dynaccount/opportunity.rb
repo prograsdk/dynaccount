@@ -1,8 +1,8 @@
 module Dynaccount
   class Opportunity < DynaccountObject
 
-    def self.url
-      "/v5/opportunity"
+    def self.api_path
+      "opportunity"
     end
   end
 end

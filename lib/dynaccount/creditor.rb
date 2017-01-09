@@ -1,8 +1,8 @@
 module Dynaccount
   class Creditor < DynaccountObject
 
-    def self.url
-      "/v5/creditor"
+    def self.api_path
+      "creditor"
     end
   end
 end

@@ -1,8 +1,8 @@
 module Dynaccount
   class Bank < DynaccountObject
 
-    def self.url
-      "/v5/bank"
+    def self.api_path
+      "bank"
     end
   end
 end
