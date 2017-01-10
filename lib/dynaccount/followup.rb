@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "followup"
+      'followup'
     end
   end
 end

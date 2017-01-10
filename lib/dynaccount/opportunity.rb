@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "opportunity"
+      'opportunity'
     end
   end
 end

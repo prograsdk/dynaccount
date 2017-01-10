@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "product_currency"
+      'product_currency'
     end
   end
 end

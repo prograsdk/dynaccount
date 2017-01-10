@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "debtor_subscription_group"
+      'debtor_subscription_group'
     end
   end
 end

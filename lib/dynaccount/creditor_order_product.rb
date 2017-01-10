@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "creditor_order_product"
+      'creditor_order_product'
     end
   end
 end

@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "unit"
+      'unit'
     end
   end
 end

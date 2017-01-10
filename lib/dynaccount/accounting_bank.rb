@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "accounting_bank"
+      'accounting_bank'
     end
   end
 end

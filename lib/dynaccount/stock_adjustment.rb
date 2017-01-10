@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "stock_adjustment"
+      'stock_adjustment'
     end
   end
 end

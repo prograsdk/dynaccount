@@ -10,7 +10,7 @@ module Dynaccount
 
     def update(attributes = {})
       return true if attributes.empty?
-      updt = @keys.select{ |k| !self.class.ignore_put.include?(k.to_sym) }
+      updt = @keys.select { |k| !self.class.ignore_put.include?(k.to_sym) }
                   .map { |k| [k, send(k)] }
                   .to_h
       attributes.merge!(updt)
@@ -18,7 +18,7 @@ module Dynaccount
     end
 
     def save
-      updt = @keys.select{ |k| !self.class.ignore_put.include?(k.to_sym) }
+      updt = @keys.select { |k| !self.class.ignore_put.include?(k.to_sym) }
                   .map { |k| [k, send(k)] }
                   .to_h
       Dynaccount.request(self.class.url(id, 'put'), attributes, :post).body
@@ -33,7 +33,7 @@ module Dynaccount
     end
 
     def self.find(id)
-      req = JSON.parse(Dynaccount.request(url(id, 'get'), {}, :post).body)["result"].map { |res| new(res) }
+      req = JSON.parse(Dynaccount.request(url(id, 'get'), {}, :post).body)['result'].map { |res| new(res) }
       return req[0] if req.size == 1
       req
     end

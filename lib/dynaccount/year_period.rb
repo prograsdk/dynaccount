@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "year_period"
+      'year_period'
     end
   end
 end

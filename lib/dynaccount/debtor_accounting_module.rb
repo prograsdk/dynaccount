@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "debtor_accounting_module"
+      'debtor_accounting_module'
     end
   end
 end

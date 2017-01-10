@@ -5,7 +5,7 @@ module Dynaccount
     end
 
     def self.api_path
-      "contact_user"
+      'contact_user'
     end
   end
 end
