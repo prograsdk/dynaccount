@@ -1,14 +1,18 @@
 module Dynaccount
   class DynaccountObject
     def initialize(attributes)
-      @values = attributes
-      @values.each do |k, v|
+      @keys = attributes.keys
+      attributes.each do |k, v|
         self.singleton_class.send(:attr_accessor, k.to_sym)
         self.send("#{k}=", v)
       end
     end
 
-    def create(attributes = {})
+    def update
+    end
+
+    def self.create(attributes = {})
+      # POST tosame path as below,
     end
 
     def self.all
