@@ -9,10 +9,11 @@ module Dynaccount
     end
 
     def update
+      Dynaccount.request(url(self.id, 'put'), attributes, :post).body
     end
 
     def self.create(attributes = {})
-      # POST tosame path as below,
+      Dynaccount.request(url(nil, 'put'), attributes, :post).body
     end
 
     def self.all
@@ -20,13 +21,13 @@ module Dynaccount
     end
 
     def self.find(id)
-      req = JSON.parse(Dynaccount.request(url(id), {}, :post).body)["result"].map { |res| new(res) }
+      req = JSON.parse(Dynaccount.request(url(id, 'get'), {}, :post).body)["result"].map { |res| new(res) }
       return req[0] if req.size == 1
       req
     end
 
-    def self.url(id)
-      "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/get/#{api_path}/json/#{"#{id}/" unless id.nil?}"
+    def self.url(id, action)
+      "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{action}/#{api_path}/json/#{"#{id}/" unless id.nil?}"
     end
   end
 end

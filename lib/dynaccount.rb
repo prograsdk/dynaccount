@@ -76,7 +76,7 @@ module Dynaccount
   class << self
     attr_accessor :api_key, :api_base, :api_secret, :api_id
 
-    def request(url, params = {}, method = :get)
+    def request(url, params = {}, method = :post)
       conn = Faraday.new(url: "https://#{request_url(url)}") do |faraday|
         faraday.request  :url_encoded
         faraday.response :logger, ::Logger.new(STDOUT), bodies: true
@@ -84,7 +84,7 @@ module Dynaccount
       end
 
       conn.post do |req|
-        req.body = { __api_hash: api_hash(request_url(url), params) }
+        req.body = "#{URI.encode_www_form(params)}#{'&' unless params.empty?}__api_hash=#{api_hash(request_url(url), params)}"
       end
     end
 
@@ -93,7 +93,7 @@ module Dynaccount
     end
 
     def api_hash(url, params = {})
-      p "#{url}#{URI.encode_www_form(params)}#{api_secret}"
+      # p "#{url}#{URI.encode_www_form(params)}#{api_secret}"
       (Digest::SHA1.new << "#{url}#{URI.encode_www_form(params)}#{api_secret}")
         .to_s
     end
