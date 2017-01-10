@@ -17,6 +17,13 @@ module Dynaccount
       Dynaccount.request(self.class.url(id, 'put'), attributes, :post).body
     end
 
+    def save
+      updt = @keys.select{ |k| !self.class.ignore_put.include?(k.to_sym) }
+                  .map { |k| [k, send(k)] }
+                  .to_h
+      Dynaccount.request(self.class.url(id, 'put'), attributes, :post).body
+    end
+
     def self.create(attributes = {})
       Dynaccount.request(url(nil, 'put'), attributes, :post).body
     end
