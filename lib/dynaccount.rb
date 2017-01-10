@@ -77,13 +77,14 @@ module Dynaccount
     attr_accessor :api_key, :api_base, :api_secret, :api_id
 
     def request(url, params = {}, method = :post)
-      @api_connection ||= Faraday.new(url: "https://#{request_url(url)}") do |faraday|
+      @api_connection ||= Faraday.new(url: "https://#{@base_url}") do |faraday|
         faraday.request  :url_encoded
         faraday.response :logger, ::Logger.new(STDOUT), bodies: true
         faraday.adapter  :net_http_persistent
       end
 
       @api_connection.post do |req|
+        req.url url
         req.body = "#{URI.encode_www_form(params)}#{'&' unless params.empty?}__api_hash=#{api_hash(request_url(url), params)}"
       end
     end
