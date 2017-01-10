@@ -3,13 +3,18 @@ module Dynaccount
     def initialize(attributes)
       @keys = attributes.keys
       attributes.each do |k, v|
-        self.singleton_class.send(:attr_accessor, k.to_sym)
-        self.send("#{k}=", v)
+        singleton_class.send(:attr_accessor, k.to_sym)
+        send("#{k}=", v)
       end
     end
 
-    def update
-      Dynaccount.request(url(self.id, 'put'), attributes, :post).body
+    def update(attributes = {})
+      return true if attributes.empty?
+      updt = @keys.select{ |k| !self.class.ignore_put.include?(k.to_sym) }
+                  .map { |k| [k, send(k)] }
+                  .to_h
+      attributes.merge!(updt)
+      Dynaccount.request(self.class.url(id, 'put'), attributes, :post).body
     end
 
     def self.create(attributes = {})
