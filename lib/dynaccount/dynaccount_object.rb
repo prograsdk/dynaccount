@@ -21,7 +21,7 @@ module Dynaccount
       updt = @keys.select { |k| !self.class.ignore_put.include?(k.to_sym) }
                   .map { |k| [k, send(k)] }
                   .to_h
-      Dynaccount.request(self.class.url(id, 'put'), attributes, :post).body
+      Dynaccount.request(self.class.url(id, 'put'), updt, :post).body
     end
 
     def self.create(attributes = {})
