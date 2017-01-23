@@ -38,6 +38,12 @@ module Dynaccount
       req
     end
 
+    def self.find_by(param = {})
+      req = JSON.parse(Dynaccount.request(url(nil, 'get'), params, :post).body)['result'].map { |res| new(res) }
+      return req[0] if req.size == 1
+      req
+    end
+
     def self.url(id, action)
       "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{action}/#{api_path}/json/#{"#{id}/" unless id.nil?}"
     end

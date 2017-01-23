@@ -5,6 +5,8 @@ require 'logger'
 
 require 'dynaccount/dynaccount_object'
 
+require 'dynaccount/action'
+
 require 'dynaccount/account'
 require 'dynaccount/accounting'
 require 'dynaccount/accounting_bank'
