@@ -38,7 +38,7 @@ module Dynaccount
       req
     end
 
-    def self.find_by(param = {})
+    def self.find_by(params = {})
       req = JSON.parse(Dynaccount.request(url(nil, 'get'), params, :post).body)['result'].map { |res| new(res) }
       return req[0] if req.size == 1
       req
