@@ -25,7 +25,8 @@ module Dynaccount
     end
 
     def self.create(attributes = {})
-      Dynaccount.request(url(nil, 'put'), attributes, :post).body
+      req = JSON.parse(Dynaccount.request(url(nil, 'put'), attributes, :post).body)['result'].map { |res| new(res) }
+      req[0]
     end
 
     def self.all
