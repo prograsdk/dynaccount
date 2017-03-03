@@ -18,7 +18,7 @@ module Dynaccount
     end
 
     def destroy
-      Dynaccount.request(self.class.url(id, 'delete'), attributes, :post).body
+      Dynaccount.request(self.class.url(id, 'delete'), {}, :post).body
     end
 
     def save
