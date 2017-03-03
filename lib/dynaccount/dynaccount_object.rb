@@ -17,6 +17,10 @@ module Dynaccount
       Dynaccount.request(self.class.url(id, 'put'), attributes, :post).body
     end
 
+    def destroy
+      Dynaccount.request(self.class.url(id, 'delete'), attributes, :post).body
+    end
+
     def save
       updt = @keys.select { |k| !self.class.ignore_put.include?(k.to_sym) }
                   .map { |k| [k, send(k)] }
