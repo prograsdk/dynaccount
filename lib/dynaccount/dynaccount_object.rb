@@ -57,5 +57,13 @@ module Dynaccount
       url += "?" + params.map { |k,v| "#{k}=#{v}" }.join('&') if params.any?
       url
     end
+
+    def marshal_dump
+      values
+    end
+
+    def marshal_load(val)
+      new(val)
+    end
   end
 end
