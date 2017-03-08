@@ -3,7 +3,7 @@ module Dynaccount
     def initialize(attributes)
       @keys = attributes.keys
       attributes.each do |k, v|
-        send(:attr_accessor, k.to_sym)
+        singleton_class.send(:attr_accessor, k.to_sym)
         send("#{k}=", v)
       end
     end
