@@ -1,7 +1,6 @@
 module Dynaccount
   class DynaccountObject
     def initialize(attributes)
-      attr_accessor :keys
       @keys = attributes.keys
       attributes.each do |k, v|
         send(:attr_accessor, k.to_sym)
