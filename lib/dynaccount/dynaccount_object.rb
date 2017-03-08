@@ -62,8 +62,8 @@ module Dynaccount
       values
     end
 
-    def marshal_load(val)
-      new(val)
+    def self._load (val)
+      initialize(val)
     end
   end
 end
