@@ -1,5 +1,6 @@
 module Dynaccount
   class DynaccountObject
+    attr_accessor :keys
     def initialize(attributes)
       @keys = attributes.keys
       attributes.each do |k, v|
@@ -54,5 +55,6 @@ module Dynaccount
       url += "?" + params.map { |k,v| "#{k}=#{v}" }.join('&') if params.any?
       url
     end
+
   end
 end
