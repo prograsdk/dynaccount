@@ -1,7 +1,10 @@
 module Dynaccount
   class DynaccountObject
+    attr_accessor :values
+
     def initialize(attributes)
       @keys = attributes.keys
+      @values = attributes
       attributes.each do |k, v|
         singleton_class.send(:attr_accessor, k.to_sym)
         send("#{k}=", v)
@@ -54,6 +57,5 @@ module Dynaccount
       url += "?" + params.map { |k,v| "#{k}=#{v}" }.join('&') if params.any?
       url
     end
-
   end
 end

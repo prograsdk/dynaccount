@@ -81,7 +81,7 @@ module Dynaccount
     def request(url, params = {}, _method = :post)
       @api_connection ||= Faraday.new(url: "https://#{@base_url}") do |faraday|
         faraday.request  :url_encoded
-        faraday.response :logger, ::Logger.new(STDOUT), bodies: (debug.present? ? debug : false)
+        faraday.response :logger, ::Logger.new(STDOUT), bodies: (debug || false)
         faraday.adapter  :net_http_persistent
       end
 
