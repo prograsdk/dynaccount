@@ -81,13 +81,8 @@ module Dynaccount
     def request(url, params = {}, _method = :post)
       @api_connection ||= Faraday.new(url: "https://#{@base_url}") do |faraday|
         faraday.request :url_encoded
-        if debug
-          logger = Logger.new STDOUT
-          logger.level = Logger::DEBUG
-        else
-          logger = Logger.new $stderr
-          logger.level = Logger::ERROR
-        end
+        logger = Logger.new STDOUT
+        logger.level = debug ? Logger::DEBUG : Logger::INFO
         faraday.response :logger, logger, bodies: (debug || false)
         faraday.adapter  :net_http_persistent
       end
