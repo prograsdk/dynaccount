@@ -1,6 +1,6 @@
 require 'json'
 require 'faraday'
-require 'net/http'
+require 'net/http/persistent'
 require 'logger'
 
 require 'dynaccount/dynaccount_object'
@@ -84,7 +84,7 @@ module Dynaccount
         logger = Logger.new STDOUT
         logger.level = debug ? Logger::DEBUG : Logger::INFO
         faraday.response :logger, logger, bodies: (debug || false)
-        faraday.adapter Faraday.default_adapter
+        faraday.adapter  :net_http_persistent
       end
 
       @api_connection.post do |req|
