@@ -37,7 +37,7 @@ module Dynaccount
     end
 
     def self.all
-      find(nil)
+      find(nil) || []
     end
 
     def self.find(id)
