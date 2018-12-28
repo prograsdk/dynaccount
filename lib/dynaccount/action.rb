@@ -9,7 +9,7 @@ module Dynaccount
     end
 
     def self.url(action)
-      "/v5/#{Dynaccount.api_id}/#{Dynaccount.api_key}/action/#{action}/json/"
+      "/v6/#{Dynaccount.api_id}/#{Dynaccount.api_key}/action/#{action}/"
     end
   end
 end

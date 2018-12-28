@@ -83,13 +83,14 @@ module Dynaccount
         faraday.request :url_encoded
         logger = Logger.new STDOUT
         logger.level = debug ? Logger::DEBUG : Logger::INFO
-        faraday.response :logger, logger, bodies: (debug || false)
+        faraday.response :logger, logger, bodies: true
         faraday.adapter  :net_http_persistent
       end
 
       @api_connection.post do |req|
         req.url url
-        req.body = "#{URI.encode_www_form(params)}#{'&' unless params.empty?}__api_hash=#{api_hash(request_url(url), params)}"
+        req.headers['X-Hash'] = api_hash(request_url(url), params)
+        req.body = "#{URI.encode_www_form(params)}"
       end
     end
 
@@ -98,7 +99,6 @@ module Dynaccount
     end
 
     def api_hash(url, params = {})
-      # p "#{url}#{URI.encode_www_form(params)}#{api_secret}"
       (Digest::SHA1.new << "#{url}#{URI.encode_www_form(params)}#{api_secret}")
         .to_s
     end

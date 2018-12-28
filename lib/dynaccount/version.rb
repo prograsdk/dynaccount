@@ -1,3 +1,3 @@
 module Dynaccount
-  VERSION = '0.9.7'.freeze
+  VERSION = '0.9.9'.freeze
 end
