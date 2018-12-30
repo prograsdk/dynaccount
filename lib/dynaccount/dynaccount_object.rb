@@ -44,7 +44,7 @@ module Dynaccount
       req = JSON.parse(Dynaccount.request(url(id, 'get'), {}, :post).body).fetch('result', []).map { |res| new(res) }
       return req[0] if req.size == 1
       req
-    rescue JSON::ParserError => e
+    rescue JSON::ParserError => _e
       return nil
     end
 
@@ -52,13 +52,33 @@ module Dynaccount
       req = JSON.parse(Dynaccount.request(url(nil, 'get', params), {}, :post).body).fetch('result', []).map { |res| new(res) }
       return req[0] if req.size == 1
       req
-    rescue JSON::ParserError => e
+    rescue JSON::ParserError => _e
       return nil
+    end
+
+    def self.run_query(select: [], where: {}, limit: nil, offset: nil, order: [])
+      params = {}
+      params.merge!(select: select.join('%2C')) if select&.any?
+      params.merge!(where.tap {|w| w&.delete(:select) }) if where
+      params.merge!(order: "#{order[0]}+#{order[1]}") if order&.count == 2
+      params.merge!(limit: "#{[offset, limit].select {|i| i.is_a?(Integer) }.join('%2C')}") if [offset, limit].select {|i| i.is_a?(Integer) }.any?
+
+      JSON.parse(
+        Dynaccount.request(url(nil, 'get', params), {}, :post).body
+      ).fetch('result', []).map { |res| new(res) }
+    rescue JSON::ParserError => _e
+      return nil
+    end
+
+    def self.query
+      Dynaccount::QueryBuilder.new(self)
     end
 
     def self.url(id, action, params = {})
       url = "/v6/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{action}/#{api_path}/#{"#{id}/" unless id.nil?}"
-      url += "?" + params.map { |k,v| "#{k}=#{v}" }.join('&') if params.any?
+      url += "?" + params.map do |k,v|
+        "#{k}=#{v.to_s.gsub(/[^a-zA-Z0-9_\-.]/n) { sprintf("%%%02X", $&.unpack("C")[0]) }.encode('utf-8')}"
+      end.sort.join('&') if params.any?
       url
     end
 

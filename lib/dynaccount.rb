@@ -72,6 +72,8 @@ require 'dynaccount/vatcode'
 require 'dynaccount/year'
 require 'dynaccount/year_period'
 
+require 'dynaccount/query_builder'
+
 module Dynaccount
   @base_url = 'api.dynaccount.com'
 
@@ -90,7 +92,7 @@ module Dynaccount
       @api_connection.post do |req|
         req.url url
         req.headers['X-Hash'] = api_hash(request_url(url), params)
-        req.body = "#{URI.encode_www_form(params)}"
+        req.body = URI.encode_www_form(params).to_s
       end
     end
 
@@ -99,8 +101,7 @@ module Dynaccount
     end
 
     def api_hash(url, params = {})
-      (Digest::SHA1.new << "#{url}#{URI.encode_www_form(params)}#{api_secret}")
-        .to_s
+      (Digest::SHA1.new << "#{url}#{URI.encode_www_form(params)}#{api_secret}").to_s
     end
   end
 end
