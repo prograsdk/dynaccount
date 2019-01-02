@@ -5,8 +5,6 @@ module Dynaccount
         :id,
         :contact_id,
         :balance,
-        :vatno_validation,
-        :time_vatno_validation,
         :due,
         :is_blocked,
         :invoicing_module_name
