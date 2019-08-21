@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'json', '< 3', '>= 1.8'
   s.add_runtime_dependency 'faraday', '~> 0.10'
-  s.add_runtime_dependency 'net-http-persistent', '< 3'
+  s.add_runtime_dependency 'net-http-persistent', '< 4'
 
   s.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 end
