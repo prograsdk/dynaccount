@@ -1,4 +1,6 @@
 # Dynaccount
+[![Gem Version](https://badge.fury.io/rb/dynaccount.svg)](https://badge.fury.io/rb/dynaccount)
+
 This dynaccount gem is created to create an ActiveRecord-like interaction to [Dynaccount](https://dynaccount.com), accounting system's API.
 
 The current API-version is `v6`.
