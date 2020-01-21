@@ -3,7 +3,7 @@
 
 This dynaccount gem is created to create an ActiveRecord-like interaction to [Dynaccount](https://dynaccount.com), accounting system's API.
 
-The current API-version is `v6`.
+The current API-version is `v7`.
 
 ## Usage
 

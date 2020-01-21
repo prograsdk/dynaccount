@@ -75,7 +75,7 @@ module Dynaccount
     end
 
     def self.url(id, action, params = {})
-      url = "/v6/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{action}/#{api_path}/#{"#{id}/" unless id.nil?}"
+      url = "/v7/#{Dynaccount.api_id}/#{Dynaccount.api_key}/#{action}/#{api_path}/#{"#{id}/" unless id.nil?}"
       url += "?" + params.map do |k,v|
         "#{k}=#{v.to_s.gsub(/[^a-zA-Z0-9_\-.]/n) { sprintf("%%%02X", $&.unpack("C")[0]) }.encode('utf-8')}"
       end.sort.join('&') if params.any?

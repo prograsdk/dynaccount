@@ -7,7 +7,8 @@ module Dynaccount
         :balance,
         :due,
         :is_blocked,
-        :invoicing_module_name
+        :invoicing_module_name,
+        :bs_mandate
       ]
     end
 
